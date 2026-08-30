@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J41Z0NHW20"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-J41Z0NHW20', { 'app_name': 'taikutsu-clinic' });
+  </script>
+
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>退屈クリニック</title>
+  <meta name="description" content="飽きてしまった趣味や習慣の「飽きの原因」を診断し、再燃のノウハウと別の楽しみを処方するアプリ。">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <meta property="og:title" content="退屈クリニック">
+  <meta property="og:description" content="飽きてしまった趣味や習慣の「飽きの原因」を診断し、再燃のノウハウと別の楽しみを処方するアプリ。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://taikutsu-clinic.vercel.app/ogp.svg">
+</head>
+<body>
+
+  <!-- ログイン画面 -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-card">
+      <span class="login-card__logo">🩺</span>
+      <h1 class="login-card__title">退屈クリニック</h1>
+      <p class="login-card__tagline">「なんか飽きてきた」を、そのままにしない。<br>飽きの原因を診て、次の一手を処方します。</p>
+      <button id="btn-google-login" class="google-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        Googleでログイン
+      </button>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header class="app-header">
+      <span class="app-header__brand">🩺 退屈クリニック</span>
+      <nav class="app-header__nav">
+        <a href="about.html" class="app-header__about-link">アプリについて</a>
+        <div id="user-info" class="app-header__user hidden">
+          <img id="user-avatar" class="app-header__avatar" src="" alt="" />
+          <span id="user-name" class="app-header__name"></span>
+          <button id="btn-logout" class="btn btn--ghost btn--sm">ログアウト</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="app-main">
+
+      <!-- 飽き診断 -->
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2 class="section__title">🩺 飽き診断</h2>
+            <p class="section__desc">飽きてきたものと「なぜ飽きたか」を選ぶと、処方せんを出します</p>
+          </div>
+        </div>
+
+        <form id="diagnose-form" class="consult">
+          <div class="field">
+            <label class="field__label" for="input-thing">どれについて診断しますか</label>
+            <select id="input-thing" required></select>
+            <p id="thing-hint" class="field__note hidden">まず下の「飽きたもの」から1つ登録してください。</p>
+          </div>
+
+          <div class="field">
+            <label class="field__label">飽きの原因<span class="field__hint">複数選択可・未選択でもOK</span></label>
+            <div id="cause-chips" class="chip-group"></div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="input-note">いまの気持ち・状況<span class="field__hint">任意・自由記述</span></label>
+            <textarea id="input-note" maxlength="500" placeholder="例：3年続けたけど、最近は練習しても上達を感じられず気が乗らない"></textarea>
+          </div>
+
+          <button type="submit" id="diagnose-submit" class="btn btn--primary btn--lg btn--block">処方せんを見る</button>
+        </form>
+      </section>
+
+      <!-- 診断カルテ -->
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2 class="section__title">🗂 診断カルテ</h2>
+            <p class="section__desc">処方は試したらチェック。あとから振り返れます</p>
+          </div>
+        </div>
+
+        <div class="stat-row stat-row--2">
+          <div class="stat-card">
+            <div class="stat-card__value" id="stat-charts">0</div>
+            <div class="stat-card__label">🩺 診断した回数</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value" id="stat-tried">0</div>
+            <div class="stat-card__label">✅ 試した処方</div>
+          </div>
+        </div>
+
+        <div id="chart-list" class="entry-list" style="margin-top:16px"></div>
+        <div id="chart-empty" class="empty-state">
+          <div class="empty-state__icon">🌱</div>
+          <p>まだ診断がありません。上のフォームから最初の飽きを診てみましょう。</p>
+        </div>
+      </section>
+
+      <!-- 飽きたもの -->
+      <section class="section">
+        <div class="section__head">
+          <div>
+            <h2 class="section__title">🌡 飽きたもの</h2>
+            <p class="section__desc">熱量とステータスで、復活したもの・一区切りついたものを振り返れます</p>
+          </div>
+        </div>
+
+        <div class="stat-row stat-row--3">
+          <div class="stat-card">
+            <div class="stat-card__value" id="stat-active">0</div>
+            <div class="stat-card__label">継続中</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value" id="stat-revived">0</div>
+            <div class="stat-card__label">復活した</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value" id="stat-closed">0</div>
+            <div class="stat-card__label">一区切り</div>
+          </div>
+        </div>
+
+        <form id="thing-form" class="thing-add-form">
+          <input type="text" id="input-thing-name" placeholder="飽きてきたもの（例：ギター、ジョギング、英語学習）" required maxlength="60" />
+          <select id="input-thing-category" aria-label="カテゴリ"></select>
+          <input type="month" id="input-thing-started" aria-label="始めた時期" />
+          <select id="input-thing-heat" aria-label="いまの熱量"></select>
+          <button type="submit" class="btn btn--primary btn--sm">追加</button>
+        </form>
+
+        <div id="thing-list" class="thing-list"></div>
+        <div id="thing-empty" class="empty-state">
+          <div class="empty-state__icon">📻</div>
+          <p>飽きてきたもの・熱が下がってきたものを登録してみましょう。</p>
+        </div>
+
+        <details class="archive-details">
+          <summary class="archive-details__summary">アーカイブしたもの（<span id="archived-count">0</span>）</summary>
+          <div id="archived-thing-list" class="thing-list"></div>
+        </details>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Yuji Nakamura. All rights reserved.</p>
+      <p><a href="https://apps.yuji-nakamura.com/" target="_blank" rel="noopener">他のアプリを見る →</a></p>
+    </footer>
+
+    <button id="feedback-btn" class="feedback-btn">💬 ご意見・ご要望</button>
+  </div>
+
+  <!-- 削除確認ダイアログ（カスタムUI） -->
+  <div id="confirm-dialog-overlay" class="dialog-overlay">
+    <div class="dialog">
+      <div class="dialog__title" id="confirm-dialog-title">削除しますか？</div>
+      <div class="dialog__text">削除すると元に戻せません。</div>
+      <div class="dialog__actions">
+        <button id="btn-confirm-cancel" class="btn btn--ghost">キャンセル</button>
+        <button id="btn-confirm-delete" class="btn btn--danger">削除する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 要望送信モーダル -->
+  <div id="feedback-modal-overlay" class="dialog-overlay">
+    <div class="modal">
+      <div class="modal__head">
+        <div class="modal__title">ご意見・ご要望</div>
+        <button id="btn-feedback-close" class="modal__close" aria-label="閉じる">&times;</button>
+      </div>
+      <textarea id="input-feedback-message" rows="5" placeholder="ご意見・ご要望・バグ報告など、なんでもどうぞ"></textarea>
+      <div class="modal__actions">
+        <button id="btn-feedback-send" class="btn btn--primary">送信する</button>
+      </div>
+      <p class="modal__note">送信内容は開発者に届きます。個人情報は入力しないでください。</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

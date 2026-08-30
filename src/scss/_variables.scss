@@ -1,0 +1,41 @@
+// Colors — バイオレット（診断・処方） + ウォームオレンジ（別の楽しみ）
+$color-bg: #f3f2fb;
+$color-surface: #ffffff;
+$color-surface-2: #ecebf7;
+$color-primary: #6d5df0;
+$color-primary-hover: #5847d6;
+$color-accent: #ef8f3c;
+$color-accent-hover: #d9791f;
+$color-danger: #dc2626;
+$color-text: #241f38;
+$color-text-muted: #6b6580;
+$color-border: #ddd9ef;
+
+// Status colors
+$color-success: #16a34a;
+
+// Typography
+$font-family: 'Noto Sans JP', sans-serif;
+$font-size-xs: 11px;
+$font-size-sm: 13px;
+$font-size-base: 15px;
+$font-size-lg: 18px;
+$font-size-xl: 22px;
+$font-size-2xl: 28px;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+
+// Border radius
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 16px;
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
