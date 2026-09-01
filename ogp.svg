@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#3498db"/>
-  <text x="600" y="140" font-size="26" font-weight="600" letter-spacing="4" text-anchor="middle" fill="#ffffff" fill-opacity="0.72" font-family="-apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif">学び・成長</text>
-  <g transform="translate(600 275) scale(3.6) translate(-32 -32)" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="14" width="32" height="40" rx="4"/><rect x="26" y="10" width="12" height="6" rx="2"/><path d="M22 32 L28 38 L42 22"/></g>
+  <g transform="translate(600 240) scale(3.6) translate(-32 -32)" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="14" width="32" height="40" rx="4"/><rect x="26" y="10" width="12" height="6" rx="2"/><path d="M22 32 L28 38 L42 22"/></g>
   <text x="600" y="480" font-size="76" font-weight="600" text-anchor="middle" fill="#ffffff" font-family="-apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif" letter-spacing="-2">退屈クリニック</text>
 </svg>
