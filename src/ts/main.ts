@@ -307,7 +307,9 @@ function renderChartCard(chart: Chart): HTMLElement {
   // --- footer (delete) ---
   const footer = document.createElement('div');
   footer.className = 'entry-card__footer';
-  const delBtn = textEl('button', 'btn btn--ghost btn--sm', '🗑 このカルテを削除');
+  const delBtn = document.createElement('button');
+  delBtn.className = 'btn btn--ghost btn--sm';
+  delBtn.innerHTML = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><path d="M14 18 H50"/><path d="M22 18 V12 Q22 10 24 10 H40 Q42 10 42 12 V18"/><path d="M18 18 L21 52 Q21 54 23 54 H41 Q43 54 43 52 L46 18"/><line x1="26" y1="26" x2="27" y2="46"/><line x1="38" y1="26" x2="37" y2="46"/></svg> このカルテを削除';
   delBtn.setAttribute('type', 'button');
   delBtn.addEventListener('click', () => {
     const label = thing ? `${thing.name} の診断` : 'この診断';
@@ -325,11 +327,9 @@ function renderPrescriptionItem(chart: Chart, item: PrescriptionItem, idx: numbe
   const el = document.createElement('div');
   el.className = 'action-item' + (item.done ? ' is-done' : '');
 
-  const checkbox = textEl(
-    'button',
-    'action-item__checkbox' + (item.done ? ' is-done' : ''),
-    item.done ? '✓' : '',
-  );
+  const checkbox = document.createElement('button');
+  checkbox.className = 'action-item__checkbox' + (item.done ? ' is-done' : '');
+  checkbox.innerHTML = item.done ? '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" style="width:0.8em;height:0.8em"><path d="M14 33 L26 45 L50 19"/></svg>' : '';
   checkbox.setAttribute('type', 'button');
   checkbox.setAttribute('aria-label', item.done ? '「試した」を取り消す' : '試したことにする');
   checkbox.addEventListener('click', () => toggleItem(chart, idx));
@@ -451,7 +451,9 @@ function renderThingCard(thing: Thing): HTMLElement {
       .catch(() => showToast('更新に失敗しました'));
   });
 
-  const archiveBtn = textEl('button', 'icon-btn', thing.archived ? '↩' : '📦');
+  const archiveBtn = document.createElement('button');
+  archiveBtn.className = 'icon-btn';
+  archiveBtn.innerHTML = thing.archived ? '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><path d="M22 22 H40 A14 14 0 1 1 40 50 H30"/><path d="M30 12 L18 22 L30 32"/></svg>' : '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><path d="M10 20 L32 10 L54 20 L32 30 Z"/><path d="M10 20 V46 L32 56 V30"/><path d="M54 20 V46 L32 56"/></svg>';
   archiveBtn.setAttribute('type', 'button');
   archiveBtn.setAttribute('aria-label', thing.archived ? 'アーカイブ解除' : 'アーカイブ');
   archiveBtn.addEventListener('click', () => {
@@ -460,7 +462,9 @@ function renderThingCard(thing: Thing): HTMLElement {
       .catch(() => showToast('更新に失敗しました'));
   });
 
-  const delBtn = textEl('button', 'icon-btn is-danger', '🗑');
+  const delBtn = document.createElement('button');
+  delBtn.className = 'icon-btn is-danger';
+  delBtn.innerHTML = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><path d="M14 18 H50"/><path d="M22 18 V12 Q22 10 24 10 H40 Q42 10 42 12 V18"/><path d="M18 18 L21 52 Q21 54 23 54 H41 Q43 54 43 52 L46 18"/><line x1="26" y1="26" x2="27" y2="46"/><line x1="38" y1="26" x2="37" y2="46"/></svg>';
   delBtn.setAttribute('type', 'button');
   delBtn.setAttribute('aria-label', '削除');
   delBtn.addEventListener('click', () => {
