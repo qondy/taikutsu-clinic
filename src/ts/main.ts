@@ -11,6 +11,9 @@ import {
   subscribeCharts, createChart, updateChartItems, deleteChart,
 } from './charts';
 import { Thing, Chart, ThingCategory, ThingStatus, PrescriptionItem } from './types';
+import { initClickTracking } from './analytics';
+
+initClickTracking();
 
 // ============================================================
 // DOM refs
